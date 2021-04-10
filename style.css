@@ -1,0 +1,140 @@
+body {
+    font-size: 18px;
+    background-color: #ebf1f5;
+    background-image: url(https://api.amarea.cn/getemilia);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    min-height: 800px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: .5em;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 1em;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h1,h2,h3,h4 {
+    color: black;
+}
+
+.container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.my-card {
+    box-shadow: 2px 4px 8px 4px rgba(0,0,0,0.5);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.my-card .card1 {
+    background-image: url(https://blogcdn.amarea.cn/favicon_128px.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.my-card .card2 {
+    border: none;
+    padding: 80px 80px 40px;
+    transition: ease 0.5s;
+}
+
+
+
+.btn {
+    border-radius: 0;
+    margin: 5px 0;
+    width: 100%;
+    padding: 12px 40px;
+    transition: ease 0.5s;
+}
+
+.btn:hover{
+    box-shadow: 5px -2px 15px 0px rgb(203, 221, 232);
+}
+
+.social {
+    padding-left: 0;
+}
+
+.social p {
+    margin-bottom: 0;
+}
+
+.social li {
+    list-style: none;
+    float: left;
+    margin-right: 15px;
+}
+
+.card-text {
+    margin-bottom: 20px;
+}
+
+.social .fa {
+    font-size: 24px;
+}
+
+@media (max-width: 1199px) {
+    body {
+        min-height: 600px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2,.social .fa {
+        font-size: 20px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+    h4,p {
+        font-size: 14px;
+    }
+    .card2 {
+        padding: 50px 50px 25px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .card1 {
+        min-height: calc(100vh - 500px);
+    }
+}
+
+@media(max-width:991px) {
+    .card1 {
+        background-position: top;
+        min-height: calc(90vh - 440px);
+    }
+}
+
+@media(max-width: 767px) {
+    .container {
+        position: relative;
+        top: 0;
+        transform: translateY(0);
+    }
+    .card1 {
+        height: 180px;
+    }
+    .card2 {
+        padding: 30px;
+    }
+}
