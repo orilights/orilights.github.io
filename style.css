@@ -1,7 +1,7 @@
 body {
     font-size: 18px;
     background-color: #ebf1f5;
-    background-image: url(https://api.amarea.cn/getemilia);
+    background-image: url(https://api.amarea.cn/getemilia?op=1);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -40,16 +40,11 @@ h1,h2,h3,h4 {
 
 .my-card {
     box-shadow: 2px 4px 8px 4px rgba(0,0,0,0.5);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
-.my-card .card1 {
-    background-image: url(https://blogcdn.amarea.cn/favicon_128px.png);
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.my-card .card2 {
+.my-card .card {
+    background-color: rgba(0,0,0,0);
     border: none;
     padding: 80px 80px 40px;
     transition: ease 0.5s;
@@ -107,23 +102,11 @@ h1,h2,h3,h4 {
     h4,p {
         font-size: 14px;
     }
-    .card2 {
+    .card {
         padding: 50px 50px 25px;
     }
 }
 
-@media (max-width: 1199px) {
-    .card1 {
-        min-height: calc(100vh - 500px);
-    }
-}
-
-@media(max-width:991px) {
-    .card1 {
-        background-position: top;
-        min-height: calc(90vh - 440px);
-    }
-}
 
 @media(max-width: 767px) {
     .container {
@@ -131,10 +114,7 @@ h1,h2,h3,h4 {
         top: 0;
         transform: translateY(0);
     }
-    .card1 {
-        height: 180px;
-    }
-    .card2 {
+    .card {
         padding: 30px;
     }
 }
