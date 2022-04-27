@@ -1,43 +1,83 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OriLight</title>
     <meta name="description" content="OriLight">
-    <meta name="keywords" content="OriLight,主页">
+    <meta name="keywords" content="OriLight,主页,HomePage">
     <link rel="shortcut icon" href="favicon.png">
-    <script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+        function changeNav(nav){
+            navList = document.getElementsByClassName('nav-item')
+            cardList = document.getElementsByClassName('card')
+            for(let item of cardList){
+                item.classList.add('card-deactive')
+                item.classList.remove('card-active')
+            }
+            for(let item of navList){
+                item.classList.remove('nav-active')
+            }
+            cardList[nav-1].classList.remove('card-deactive')
+            cardList[nav-1].classList.add('card-active')
+            navList[nav -1].classList.add('nav-active')
+        }
+    </script>
 </head>
 
 <body>
-    <div id="main" class="container">
-        <div class="row my-card justify-content-center">
-            <div class="col-lg-12 card">
-                <h1>Welcome!</h1>
-                <p>我是OriLight，欢迎访问我的主页 (｡･∀･)ﾉﾞ</p>
-                <p>软件工程在读，对计算机及编程有着浓厚的兴趣 ╰(￣ω￣ｏ)</p>
-                <p>喜欢自己折腾捣鼓一些小东西，可惜三分钟热度严重 (´。＿。｀)</p>
-                <br>
-                <p>你可以通过下面的方式了解我</p>
-                <div class="row">
-                    <a href="https://orilight.top" target="_blank" class="col-lg-4 btn btn-primary">Blog</a>
-                    <a href="https://github.com/OriLight152" target="_blank"
-                        class="col-lg-4 btn btn-secondary">GitHub</a>
-                </div>
-                <ul class="social">
-                    <li><a href="https://github.com/OriLight152"><i class="fab fa-github" aria-hidden="true"></i></a>
-                    </li>
-                    <li><a href="https://t.me/OriLight"><i class="fab fa-telegram" aria-hidden="true"></i></a></li>
-                </ul>
+    <div id="container">
+        <div class="box clearfix">
+            <div class="nav">
+                <div class="nav-item nav-active" onclick="changeNav(1)">INFO</div>
+                <div class="nav-item" onclick="changeNav(2)">POST</div>
+                <div class="nav-item" onclick="changeNav(3)">CONTACT</div>
+                <div class="nav-item" onclick="changeNav(4)">ABOUT</div>
+            </div>
+            <div class="info card card-active">
+                <div class="card-title"><span>INFO/信息</span></div>
+                <p class="info-avatar"><img src="https://static.amarea.cn/avatar/favicon_256px.png" alt=""></p>
+                <p class="info-name">OriLight</p>
+            </div>
+            <div class="post card card-deactive">
+                <div class="card-title">POST/文章</div>
+                <div id="post-container"></div>
+                <div class="post-more"><a href="https://blog.amarea.cn/archives.html">查看更多</a></div>
+            </div>
+            <div class="post card card-deactive">
+                <div class="card-title">CONTACT/联系</div>
+            </div>
+            <div class="post card card-deactive">
+                <div class="card-title">ABOUT/关于</div>
             </div>
         </div>
-
     </div>
+</body>
+<script>
+    async function getPost() {
+        let apiUrl = 'https://blog.amarea.cn/api/recentPost'
+        let postContainer = document.getElementById('post-container')
+        let response = await fetch(apiUrl)
+        if (!response.ok || response.status != 200) {
+            return 0
+        }
+        let result = await response.json()
+        postContainer.innerHTML = ''
+        for (let post of result['data']) {
+            let div = document.createElement('div')
+            let link = document.createElement('a')
+            link.href = post['permalink']
+            link.text = post['title']
+            div.classList.add('post-item')
+            div.appendChild(link)
+            postContainer.appendChild(div)
+        }
+       
+    }
+    getPost()
+</script>
 
 </html>
