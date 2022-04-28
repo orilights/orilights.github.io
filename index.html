@@ -10,53 +10,98 @@
     <meta name="keywords" content="OriLight,主页,HomePage">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_3364945_px81la1x04b.css">
     <script>
-        function changeNav(nav){
+        function changeNav(nav) {
             navList = document.getElementsByClassName('nav-item')
             cardList = document.getElementsByClassName('card')
-            for(let item of cardList){
+            for (let item of cardList) {
                 item.classList.add('card-deactive')
                 item.classList.remove('card-active')
             }
-            for(let item of navList){
+            for (let item of navList) {
                 item.classList.remove('nav-active')
             }
-            cardList[nav-1].classList.remove('card-deactive')
-            cardList[nav-1].classList.add('card-active')
-            navList[nav -1].classList.add('nav-active')
+            cardList[nav].classList.remove('card-deactive')
+            cardList[nav].classList.add('card-active')
+            navList[nav].classList.add('nav-active')
         }
     </script>
 </head>
 
 <body>
+    <div class="mask"></div>
     <div id="container">
         <div class="box clearfix">
             <div class="nav">
-                <div class="nav-item nav-active" onclick="changeNav(1)">INFO</div>
-                <div class="nav-item" onclick="changeNav(2)">POST</div>
-                <div class="nav-item" onclick="changeNav(3)">CONTACT</div>
-                <div class="nav-item" onclick="changeNav(4)">ABOUT</div>
+                <div class="nav-item nav-active"><a href="#info">INFO</a></div>
+                <div class="nav-item"><a href="#about">ABOUT</a></div>
+                <div class="nav-item"><a href="#post">POST</a></div>
+                <div class="nav-item"><a href="#contact">CONTACT</a></div>
             </div>
             <div class="info card card-active">
                 <div class="card-title"><span>INFO/信息</span></div>
                 <p class="info-avatar"><img src="https://static.amarea.cn/avatar/favicon_256px.png" alt=""></p>
                 <p class="info-name">OriLight</p>
+                <p class="info-description">一只菜鸡</p>
+                <div class="link-container">
+                    <a href="https://blog.amarea.cn/">博客</a>
+                    <a href="https://pan.amarea.cn/">仓库</a>
+                    <a href="https://img.amarea.cn/">图床</a>
+                    <a href="https://orilight.eu.org/">服务状态</a>
+                    <a href="https://genshin-card.amarea.cn/">原神玩家卡片</a>
+                </div>
+                <div class="icon-container">
+                    <a class="iconfont icon-home" href="https://blog.amarea.cn/" title="OriLight的自留地"></a>
+                    <a class="iconfont icon-telegram" href="https://t.me/OriLight" title="Telegram"></a>
+                    <a class="iconfont icon-github1" href="https://github.com/OriLight152" title="Github Profile"></a>
+                </div>
+            </div>
+            <div class="about card card-deactive">
+                <div class="card-title">ABOUT/关于</div>
+                <p class="des desf">Hi~ o(*￣▽￣*)ブ，我是OriLight，欢迎来到我的主页。</p>
+                <p class="des dest"><span class="tag">大二狗</span> / <span class="tag">(也许)社恐</span> / <span class="tag">懒癌晚期</span> / <span class="tag">选择困难症晚期</span> / <span class="tag">三分钟热度</span> / <span class="tag">E·M·T</span> / <span class="tag">崩坏3(半退坑)</span> / <span class="tag">原神</span> / <span class="tag">明日方舟</span> / <span class="tag">Aimer</span></p>
+                <p class="des">对信息技术算是有些兴趣，不出意外的话未来应该是一名程序员。</p>
+                <p class="more"><a href="https://blog.amarea.cn/about.html">了解更多</a></p>
             </div>
             <div class="post card card-deactive">
                 <div class="card-title">POST/文章</div>
                 <div id="post-container"></div>
                 <div class="post-more"><a href="https://blog.amarea.cn/archives.html">查看更多</a></div>
             </div>
-            <div class="post card card-deactive">
+            <div class="contact card card-deactive">
                 <div class="card-title">CONTACT/联系</div>
+                <p>你可以通过下面的方式联系我</p>
+                <p><a href="https://t.me/OriLight">Telegram@OriLight</a></p>
+                <p><a href="mailto:i@orght.cn">Email: i@orght.cn</a></p>
+                <p><a href="https://blog.amarea.cn/about.html#comments">在自留地留言</a></p>
             </div>
-            <div class="post card card-deactive">
-                <div class="card-title">ABOUT/关于</div>
+
+            <div class="footer">
+                <p>Made with ♥ by OriLight</p>
             </div>
         </div>
     </div>
 </body>
 <script>
+    hashListener = function () {
+        switch (window.location.hash) {
+            case '#info':
+                changeNav(0)
+                break
+            case '#about':
+                changeNav(1)
+                break
+            case '#post':
+                changeNav(2)
+                break
+            case '#contact':
+                changeNav(3)
+                break
+
+        }
+    }
+    window.addEventListener("hashchange", hashListener, false);
     async function getPost() {
         let apiUrl = 'https://blog.amarea.cn/api/recentPost'
         let postContainer = document.getElementById('post-container')
@@ -75,8 +120,9 @@
             div.appendChild(link)
             postContainer.appendChild(div)
         }
-       
+
     }
+    hashListener()
     getPost()
 </script>
 
