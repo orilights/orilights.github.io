@@ -22,12 +22,16 @@ body {
     font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", "Segoe UI Emoji", "Segoe UI Symbol", Helvetica, Arial, -apple-system, system-ui, sans-serif;
 }
 
-.card-active {
-    display: block;
-}
 
-.card-deactive {
-    display: none;
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .iconfont {
@@ -97,14 +101,20 @@ body {
 }
 
 .nav .nav-item:hover {
-    background-color: rgba(107, 116, 142, 0.242);
+    background-color: rgba(107, 116, 142, 0.2);
 }
 
 .nav .nav-active {
-    background-color: rgba(107, 116, 142, 0.242);
+    background-color: rgba(107, 116, 142, 0.2);
+}
+
+.card-active {
+    display: block!important;
+    animation: fade 1s ease backwards;
 }
 
 .card {
+    display: none;
     z-index: 1;
     position: relative;
     float: left;
@@ -117,7 +127,7 @@ body {
     display: inline-block;
     padding: 5px 10px;
     line-height: 20px;
-    background-color: rgba(255, 255, 255, 0.338);
+    background-color: #ffffff4d;
     border-radius: 5px;
 }
 
@@ -171,18 +181,19 @@ body {
     text-align: center;
 }
 
-.about p.desf{
+.about p.desf {
     margin-top: 20px;
 }
 
-.about p.des{
+.about p.des {
     line-height: 3em;
 }
-.about p.dest{
+
+.about p.dest {
     line-height: 1.5em;
 }
 
-.about p.des span.tag {
+.about p.dest span {
     display: inline-block;
 }
 
