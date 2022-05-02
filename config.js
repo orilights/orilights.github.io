@@ -32,7 +32,7 @@ var config = {
         'link': 'https://blog.amarea.cn/',
         'text': '博客'
     }, {
-        'link': 'https://pan.amarea.cn/',
+        'link': 'https://go.amarea.cn/dlsite',
         'text': '仓库'
     }, {
         'link': 'https://img.amarea.cn/',
