@@ -64,7 +64,7 @@ body {
 
 #container .box {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.694);
+    background-color: rgba(255, 255, 255, 0.75);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     overflow: hidden;
@@ -186,7 +186,7 @@ body {
 }
 
 .about p.des {
-    line-height: 3em;
+    line-height: 2.5em;
 }
 
 .about p.dest {
@@ -212,12 +212,15 @@ body {
     text-align: center;
 }
 
+.about p.des a,
+.about p.des a:visited,
 .post .post-item a,
 .post .post-item a:visited {
     color: #3e2364;
 
 }
 
+.about p.des a:hover,
 .post .post-item a:hover {
     color: #8564b3;
 }
@@ -228,7 +231,7 @@ body {
     text-align: center;
 }
 
-.about a,
+.about p.more a,
 .post .post-more a,
 .contact a {
     margin: 10px 0 0;
@@ -241,14 +244,14 @@ body {
     box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%);
 }
 
-.about a:hover,
+.about p.more a:hover,
 .post .post-more a:hover,
 .contact a:hover {
     background-color: rgba(0, 0, 0, 0.339);
 }
 
-.about a,
-.about a:visited,
+.about p.more a,
+.about p.more a:visited,
 .post .post-more a,
 .post .post-more a:visited,
 .contact a,
