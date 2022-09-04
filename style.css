@@ -191,8 +191,10 @@ body {
     line-height: 2.5em;
 }
 
-.about p.dest {
+.about p.dest,
+.about p.desa {
     line-height: 1.5em;
+    font-size: 0.8em;
 }
 
 .about p.dest span {
