@@ -1,134 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OriLight</title>
-    <meta name="description" content="OriLight">
-    <meta name="keywords" content="OriLight,主页,HomePage">
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_3364945_px81la1x04b.css">
-    <script async defer data-website-id="c2ca99a1-28d0-4303-b24b-7b3f21db02a8" src="https://analytics.amarea.cn/collect.js"></script>
-    <script>
-        function changeNav(nav) {
-            navList = document.getElementsByClassName('nav-item')
-            cardList = document.getElementsByClassName('card')
-            for (let item of cardList) {
-                item.classList.add('card-deactive')
-                item.classList.remove('card-active')
-            }
-            for (let item of navList) {
-                item.classList.remove('nav-active')
-            }
-            cardList[nav].classList.remove('card-deactive')
-            cardList[nav].classList.add('card-active')
-            navList[nav].classList.add('nav-active')
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <title>OriLight</title>
+  <meta name="description" content="OriLight的主页">
+  <meta name="keywords" content="OriLight,主页,HomePage">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    #loading {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 100;
+      backdrop-filter: blur(100px);
+      transition: all .5s ease;
+    }
+
+    svg {
+      width: 3.75em;
+      transform-origin: center;
+      animation: rotate 2s linear infinite;
+    }
+
+    circle {
+      fill: none;
+      stroke: #fc2f70;
+      stroke-width: 2;
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: dash 1.5s ease-in-out infinite;
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+
+      50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+      }
+
+      100% {
+        stroke-dashoffset: -125px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div class="mask"></div>
-    <div id="container">
-        <div class="box clearfix">
-            <div class="nav">
-                <div class="nav-item nav-active"><a href="#info">INFO</a></div>
-                <div class="nav-item"><a href="#about">ABOUT</a></div>
-                <div class="nav-item"><a href="#post">POST</a></div>
-                <div class="nav-item"><a href="#contact">CONTACT</a></div>
-            </div>
-            <div class="info card card-active">
-                <div class="card-title"><span>INFO/信息</span></div>
-                <p class="info-avatar"><img src="/favicon.png" alt=""></p>
-                <p class="info-name">OriLight</p>
-                <p class="info-description">一只菜鸡</p>
-                <div class="link-container">
-                    <a href="https://go.amarea.cn/blog">博客</a>
-                    <a href="https://go.amarea.cn/dlsite">仓库</a>
-                    <a href="https://go.amarea.cn/imgsite">图床(非公开)</a>
-                    <a href="https://go.amarea.cn/status">服务状态</a>
-                    <a href="https://go.amarea.cn/genshin-card">原神玩家卡片</a>
-                </div>
-                <div class="icon-container">
-                    <a class="iconfont icon-home" href="https://go.amarea.cn/blog" title="OriLight的自留地"></a>
-                    <a class="iconfont icon-telegram" href="https://t.me/OriLight" title="Telegram"></a>
-                    <a class="iconfont icon-github1" href="https://github.com/OriLight152" title="Github Profile"></a>
-                </div>
-            </div>
-            <div class="about card card-deactive">
-                <div class="card-title">ABOUT/关于</div>
-                <p class="des desf">Hi~ o(*￣▽￣*)ブ，我是OriLight，欢迎来到我的主页</p>
-                <p class="des dest"><span class="tag">大三狗</span> / <span class="tag">(也许)社恐</span> / <span class="tag">懒癌晚期</span> / <span class="tag">选择困难症晚期</span> / <span class="tag">三分钟热度</span> / <span class="tag">E·M·T</span> / <span class="tag">崩坏3(已退坑，只看剧情)</span> / <span class="tag">原神</span> / <span class="tag">明日方舟(咸鱼中)</span> / <span class="tag">Aimer</span> / <span class="tag">米卫兵(?)</span></p>
-                <p class="des">对计算机和网络感兴趣，不出意外的话未来应该是一名程序员</p>
-                <p class="des"><del>啥都想学，啥都学不会</del></p>
-                <p class="des desa">原神 官服 uid:103516099 <a target="_blank" href="https://genshin-card.amarea.cn/detail/42,51-56/12436479.png">玩家卡片</a></p>
-                <p class="des desa">明日方舟 官服 OriLight#4700</p>
-                <p class="des desa">Steam <a target="_blank" href="https://steamcommunity.com/id/orilight">@orilight</a></p>
-                <p class="more"><a href="https://go.amarea.cn/blog-about">了解更多</a></p>
-            </div>
-            <div class="post card card-deactive">
-                <div class="card-title">POST/文章</div>
-                <div id="post-container"></div>
-                <div class="post-more"><a href="https://go.amarea.cn/blog-archives">查看更多</a></div>
-            </div>
-            <div class="contact card card-deactive">
-                <div class="card-title">CONTACT/联系</div>
-                <p>你可以通过下面的方式联系我</p>
-                <p><a href="https://t.me/OriLight">Telegram@OriLight</a></p>
-                <p><a href="mailto:i@orght.cn">Email: i@orght.cn</a></p>
-                <p><a href="https://go.amarea.cn/guestbook">在自留地留言</a></p>
-            </div>
-
-            <div class="footer">
-                <p>Made with ♥ by OriLight</p>
-            </div>
-        </div>
-    </div>
+  <div id="loading">
+    <svg viewBox="25 25 50 50">
+      <circle cx="50" cy="50" r="20"></circle>
+    </svg>
+  </div>
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
 </body>
-<script>
-    hashListener = function () {
-        switch (window.location.hash) {
-            case '#info':
-                changeNav(0)
-                break
-            case '#about':
-                changeNav(1)
-                break
-            case '#post':
-                changeNav(2)
-                break
-            case '#contact':
-                changeNav(3)
-                break
-
-        }
-    }
-    window.addEventListener("hashchange", hashListener, false);
-    async function getPost() {
-        let apiUrl = 'https://blog.amarea.cn/api/recentPost'
-        let postContainer = document.getElementById('post-container')
-        let response = await fetch(apiUrl)
-        if (!response.ok || response.status != 200) {
-            return 0
-        }
-        let result = await response.json()
-        postContainer.innerHTML = ''
-        for (let post of result['data']) {
-            let div = document.createElement('div')
-            let link = document.createElement('a')
-            link.href = post['permalink']
-            link.text = post['title']
-            div.classList.add('post-item')
-            div.appendChild(link)
-            postContainer.appendChild(div)
-        }
-
-    }
-    hashListener()
-    getPost()
-</script>
 
 </html>

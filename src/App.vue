@@ -1,0 +1,206 @@
+<template>
+  <Transition name="bg-show">
+    <div
+      class="w-screen h-screen fixed top-0 left-0 z-[-1] bg"
+      v-show="loaded"
+    ></div>
+  </Transition>
+  <div
+    class="w-full min-h-screen bg-black/10 flex flex-col items-center justify-center text-white z-10"
+  >
+    <Transition name="main-show">
+      <div class="w-full lg:w-[700px] px-3" v-show="loaded">
+        <div class="pb-10 flex flex-col items-center">
+          <img
+            class="shadow-[0_15px_35px_rgb(50_50_93/10)] rounded-full"
+            src="/favicon.png"
+            alt="avatar"
+          />
+          <div
+            class="px-6 py-2 mt-4 text-xl bg-black/40 backdrop-blur-md rounded-lg"
+          >
+            {{ username }}
+          </div>
+        </div>
+        <div v-for="col in links" class="mb-4">
+          <div
+            class="mb-2 px-4 py-1 w-fit text-xl font-bold bg-black/40 backdrop-blur-md rounded-lg"
+          >
+            {{ col.title }}
+          </div>
+          <div class="flex space-x-6 justify-between">
+            <a
+              v-for="item in col.links"
+              class="flex-1 text-lg text-center py-2 md:py-3 lg:py-4 overflow-hidden bg-black/40 backdrop-blur-md rounded-lg hover:bg-black/50 hover:scale-[1.03] transition-all"
+              :href="item.link"
+              @mouseenter="
+                tipsText = item.tips ? item.tips : '前往 ' + item.link;
+                tipsShow = true;
+              "
+              @mouseleave="tipsShow = false"
+            >
+              {{ item.title }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </Transition>
+    <footer
+      class="w-full py-1 text-center overflow-hidden absolute bottom-0 left-0 bg-black/40 backdrop-blur"
+      v-show="loaded"
+    >
+      <Transition name="scale-x">
+        <div
+          class="w-full py-1 text-center absolute bottom-0 left-0"
+          v-show="tipsShow"
+        >
+          {{ tipsText }}
+        </div>
+      </Transition>
+      <div class="transition-opacity" :class="tipsShow ? 'opacity-0' : 'block'">
+        ©2020-2023 OriLight
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, onMounted, ref, watch, watchEffect } from 'vue';
+import axios from 'axios';
+import { ColItem } from './types';
+import cursorInit from './utils/cursor';
+
+const loaded = computed(() => configLoaded.value && backgroundLoad.value);
+const configLoaded = ref(false);
+const backgroundLoad = ref(false);
+const links = ref<ColItem[]>([]);
+const username = ref('');
+const tipsText = ref('');
+const tipsShow = ref(false);
+const posts = ref([]);
+
+cursorInit();
+
+watch(loaded, () => {
+  if (loaded.value) {
+    document.querySelector('#loading')?.classList.add('loaded');
+    setTimeout(() => {
+      document.querySelector('#loading')?.remove();
+    }, 1000);
+  }
+});
+
+onMounted(() => {
+  axios
+    .get('/config.json')
+    .then((res) => res.data)
+    .then((data) => {
+      username.value = data['username'];
+      const i = new Image();
+      i.src = data['background'];
+      i.onload = () => {
+        backgroundLoad.value = true;
+      };
+      setTimeout(() => {
+        backgroundLoad.value = true;
+      }, 5000);
+      document.body.style.setProperty(
+        '--o-bg',
+        'url(' + data['background'] + ')'
+      );
+      links.value = data['links'];
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      configLoaded.value = true;
+    });
+});
+</script>
+
+<style>
+body {
+  background-color: black;
+  -webkit-font-smoothing: subpixel-antialiased;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.bg {
+  background-image: var(--o-bg, black);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+#app {
+  overflow: hidden;
+}
+
+* {
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='10px' height='10px'><circle cx='4' cy='4' r='4' fill='white' /></svg>")
+      4 4,
+    auto !important;
+}
+
+a,
+img {
+  -webkit-user-drag: none;
+}
+
+.loaded {
+  background: #00000000 !important;
+  backdrop-filter: blur(0px) !important;
+}
+
+.loaded svg {
+  display: none;
+}
+
+#cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 25px;
+  opacity: 0.25;
+  z-index: 10086;
+  pointer-events: none;
+  transition: 0.2s ease-in-out;
+  transition-property: background, opacity, transform;
+}
+
+#cursor.active {
+  opacity: 0.5;
+  transform: scale(0.5);
+}
+
+.scale-x-enter-active,
+.scale-x-leave-active {
+  transition: all 0.3s ease;
+}
+
+.scale-x-enter-from,
+.scale-x-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.main-show-enter-active {
+  transition: all 1.5s ease;
+}
+
+.main-show-enter-from {
+  transform: scale(1.1);
+}
+
+.bg-show-enter-active {
+  transition: all 1.5s ease;
+}
+
+.bg-show-enter-from {
+  transform: scale(1.3);
+}
+</style>
