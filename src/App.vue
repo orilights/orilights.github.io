@@ -2,73 +2,51 @@
   <Transition name="bg-show">
     <div
       class="w-screen h-screen fixed top-0 left-0 z-[-1] bg"
-      v-show="loaded"
-    ></div>
+      v-show="loaded"></div>
   </Transition>
   <div
-    class="w-full min-h-screen bg-black/10 flex flex-col items-center justify-center text-white z-10"
-  >
+    class="w-full min-h-screen bg-black/20 flex flex-col items-center justify-center text-white z-10">
     <Transition name="main-show">
       <div class="w-full lg:w-[700px] px-3" v-show="loaded">
-        <div class="pb-10 flex flex-col items-center">
-          <img
-            class="shadow-[0_15px_35px_rgb(50_50_93/10)] rounded-full"
-            src="/favicon.png"
-            alt="avatar"
-          />
-          <div
-            class="px-6 py-2 mt-4 text-xl bg-black/40 backdrop-blur-md rounded-lg"
-          >
-            {{ username }}
-          </div>
-        </div>
+        <UserProfile :username="username" />
         <div v-for="col in links" class="mb-4">
           <div
-            class="mb-2 px-4 py-1 w-fit text-xl font-bold bg-black/40 backdrop-blur-md rounded-lg"
-          >
+            class="mb-2 px-4 py-1 w-fit text-xl font-bold bg-black/40 backdrop-blur-md rounded-lg">
             {{ col.title }}
           </div>
-          <div class="flex space-x-6 justify-between">
-            <a
+          <div class="flex space-x-2 md:space-x-6 justify-between">
+            <LinkBlock
               v-for="item in col.links"
-              class="flex-1 text-lg text-center py-2 md:py-3 lg:py-4 overflow-hidden bg-black/40 backdrop-blur-md rounded-lg hover:bg-black/50 hover:scale-[1.03] transition-all"
-              :href="item.link"
-              @mouseenter="
-                tipsText = item.tips ? item.tips : '前往 ' + item.link;
-                tipsShow = true;
-              "
-              @mouseleave="tipsShow = false"
-            >
-              {{ item.title }}
-            </a>
+              :item-data="item"
+              @tips-update="handleTipsUpdate" />
           </div>
         </div>
       </div>
     </Transition>
     <footer
-      class="w-full py-1 text-center overflow-hidden absolute bottom-0 left-0 bg-black/40 backdrop-blur"
-      v-show="loaded"
-    >
+      class="w-full py-1 text-center overflow-hidden fixed bottom-0 left-0 bg-black/40 backdrop-blur"
+      v-show="loaded">
       <Transition name="scale-x">
         <div
           class="w-full py-1 text-center absolute bottom-0 left-0"
-          v-show="tipsShow"
-        >
+          v-show="tipsShow">
           {{ tipsText }}
         </div>
       </Transition>
       <div class="transition-opacity" :class="tipsShow ? 'opacity-0' : 'block'">
-        ©2020-2023 OriLight
+        {{ footerText }}
       </div>
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch, watchEffect } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import axios from 'axios';
-import { ColItem } from './types';
-import cursorInit from './utils/cursor';
+import { ColItem } from '@/types';
+import cursorInit from '@/utils/cursor';
+import LinkBlock from '@cp/LinkBlock.vue';
+import UserProfile from '@cp/UserProfile.vue';
 
 const loaded = computed(() => configLoaded.value && backgroundLoad.value);
 const configLoaded = ref(false);
@@ -77,9 +55,7 @@ const links = ref<ColItem[]>([]);
 const username = ref('');
 const tipsText = ref('');
 const tipsShow = ref(false);
-const posts = ref([]);
-
-cursorInit();
+const footerText = ref('');
 
 watch(loaded, () => {
   if (loaded.value) {
@@ -91,10 +67,12 @@ watch(loaded, () => {
 });
 
 onMounted(() => {
+  cursorInit();
   axios
-    .get('/config.json')
+    .get('./config.json')
     .then((res) => res.data)
     .then((data) => {
+      document.title = data['username'];
       username.value = data['username'];
       const i = new Image();
       i.src = data['background'];
@@ -109,6 +87,7 @@ onMounted(() => {
         'url(' + data['background'] + ')'
       );
       links.value = data['links'];
+      footerText.value = data['footer'];
     })
     .catch((err) => {
       console.error(err);
@@ -117,6 +96,13 @@ onMounted(() => {
       configLoaded.value = true;
     });
 });
+
+function handleTipsUpdate(show: boolean, text: string) {
+  tipsShow.value = show;
+  if (show) {
+    tipsText.value = text;
+  }
+}
 </script>
 
 <style>
@@ -127,6 +113,12 @@ body {
   -webkit-user-drag: none;
 }
 
+#app {
+  overflow: hidden;
+}
+
+/* Background */
+
 .bg {
   background-image: var(--o-bg, black);
   background-size: cover;
@@ -135,20 +127,14 @@ body {
   background-repeat: no-repeat;
 }
 
-#app {
-  overflow: hidden;
-}
-
-* {
-  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='10px' height='10px'><circle cx='4' cy='4' r='4' fill='white' /></svg>")
-      4 4,
-    auto !important;
-}
+/* No drag */
 
 a,
 img {
   -webkit-user-drag: none;
 }
+
+/* Loading */
 
 .loaded {
   background: #00000000 !important;
@@ -157,6 +143,14 @@ img {
 
 .loaded svg {
   display: none;
+}
+
+/* Cursor */
+
+* {
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='10px' height='10px'><circle cx='4' cy='4' r='4' fill='white' /></svg>")
+      4 4,
+    auto !important;
 }
 
 #cursor {
@@ -176,6 +170,8 @@ img {
   opacity: 0.5;
   transform: scale(0.5);
 }
+
+/* Transition */
 
 .scale-x-enter-active,
 .scale-x-leave-active {
