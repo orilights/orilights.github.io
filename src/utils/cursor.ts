@@ -1,32 +1,22 @@
 var CURSOR;
 
-type Pos = {
-  x: number;
-  y: number;
+interface Pos {
+  x: number
+  y: number
 };
 
 const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
-const getStyle = (el: any, attr: any) => {
-  try {
-    return window.getComputedStyle
-      ? window.getComputedStyle(el)[attr]
-      : el.currentStyle[attr];
-  } catch (e) {}
-  return '';
-};
 
 class Cursor {
   pos: { curr: Pos | null; prev: Pos | null };
-  pt: any[];
   cursor: any;
   scr: any;
-  constructor() {
+  constructor(con: HTMLElement) {
     this.pos = {
       curr: null,
       prev: null,
     };
-    this.pt = [];
-    this.create();
+    this.create(con);
     this.init();
     this.render();
   }
@@ -36,20 +26,13 @@ class Cursor {
     this.cursor.style['top'] = `${top}px`;
   }
 
-  create() {
+  create(con: HTMLElement) {
     if (!this.cursor) {
       this.cursor = document.createElement('div');
       this.cursor.id = 'cursor';
       this.cursor.classList.add('hidden');
-      document.body.append(this.cursor);
+      con.append(this.cursor);
     }
-
-    var el = document.getElementsByTagName('*');
-    for (let i = 0; i < el.length; i++)
-      if (getStyle(el[i], 'cursor') == 'pointer') this.pt.push(el[i].outerHTML);
-
-    document.body.appendChild((this.scr = document.createElement('style')));
-    this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='10px' height='10px'><circle cx='4' cy='4' r='4' fill='white' /></svg>") 4 4, auto !important}`;
   }
 
   refresh() {
@@ -59,9 +42,7 @@ class Cursor {
       curr: null,
       prev: null,
     };
-    this.pt = [];
 
-    this.create();
     this.init();
     this.render();
   }
@@ -93,8 +74,8 @@ class Cursor {
   }
 }
 
-const cursorInit = () => {
-  CURSOR = new Cursor();
+const cursorInit = (con: HTMLElement) => {
+  CURSOR = new Cursor(con);
 };
 
 export default cursorInit;

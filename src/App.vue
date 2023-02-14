@@ -5,16 +5,16 @@
       v-show="loaded"></div>
   </Transition>
   <div
-    class="w-full min-h-screen bg-black/20 flex flex-col items-center justify-center text-white z-10">
+    class="z-10 flex flex-col items-center justify-center w-full min-h-screen py-8 text-white bg-black/20">
     <Transition name="main-show">
-      <div class="w-full lg:w-[700px] px-3" v-show="loaded">
+      <div class="w-full md:w-[700px] px-6 md:px-0" v-show="loaded">
         <UserProfile :username="username" />
         <div v-for="col in links" class="mb-4">
           <div
-            class="mb-2 px-4 py-1 w-fit text-xl font-bold bg-black/40 backdrop-blur-md rounded-lg">
+            class="px-4 py-1 mb-2 text-xl font-bold rounded-lg w-fit bg-black/40 backdrop-blur-md">
             {{ col.title }}
           </div>
-          <div class="flex space-x-2 md:space-x-6 justify-between">
+          <div class="justify-between sm:flex sm:gap-x-6">
             <LinkBlock
               v-for="item in col.links"
               :item-data="item"
@@ -23,12 +23,13 @@
         </div>
       </div>
     </Transition>
+    <div class="hidden md:block" id="cursor-container"></div>
     <footer
-      class="w-full py-1 text-center overflow-hidden fixed bottom-0 left-0 bg-black/40 backdrop-blur"
+      class="fixed bottom-0 left-0 w-full py-1 overflow-hidden text-center bg-black/40 backdrop-blur"
       v-show="loaded">
       <Transition name="scale-x">
         <div
-          class="w-full py-1 text-center absolute bottom-0 left-0"
+          class="absolute bottom-0 left-0 w-full py-1 text-center"
           v-show="tipsShow">
           {{ tipsText }}
         </div>
@@ -67,7 +68,7 @@ watch(loaded, () => {
 });
 
 onMounted(() => {
-  cursorInit();
+  cursorInit(document.getElementById('cursor-container') as HTMLElement);
   axios
     .get('./config.json')
     .then((res) => res.data)
