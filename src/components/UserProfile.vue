@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center pb-10">
+  <div class="flex flex-col items-center">
     <img
       class="shadow-[0_15px_35px_rgb(50_50_93/10)] rounded-full"
       src="/favicon.png"

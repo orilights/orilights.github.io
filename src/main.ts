@@ -1,5 +1,8 @@
 import { createApp } from 'vue';
-import App from './App.vue';
-import './assets/tailwind.css';
+import App from '@/App.vue';
+import '@/assets/tailwind.css';
+import 'APlayer/dist/APlayer.min.css';
+import '@/assets/aplayer.custom.css';
 
-createApp(App).mount('#app');
+const app = createApp(App)
+app.mount('#app');

@@ -8,22 +8,49 @@
     class="z-10 flex flex-col items-center justify-center w-full min-h-screen py-8 text-white bg-black/20">
     <Transition name="main-show">
       <div class="w-full md:w-[700px] px-6 md:px-0" v-show="loaded">
-        <UserProfile :username="username" />
-        <div v-for="col in links" class="mb-4">
-          <div
-            class="px-4 py-1 mb-2 text-xl font-bold rounded-lg w-fit bg-black/40 backdrop-blur-md">
-            {{ col.title }}
-          </div>
-          <div class="justify-between sm:flex sm:gap-x-6">
-            <LinkBlock
-              v-for="item in col.links"
-              :item-data="item"
-              @tips-update="handleTipsUpdate" />
-          </div>
+        <UserProfile class="pb-4" :username="username" />
+        <div
+          class="px-4 py-1 mx-auto mb-2 text-white rounded-lg w-fit bg-black/40 backdrop-blur-md"
+          @click="playerEnable = true"
+          v-if="!playerEnable">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+          </svg>
         </div>
+        <Transition name="fade">
+          <MusicPlayer
+            :config="playlistConfig"
+            v-if="playerEnable"
+            @player:close="playerEnable = false" />
+        </Transition>
+        <Transition name="fade">
+          <div>
+            <div v-for="col in links" class="mb-4">
+              <div
+                class="px-4 py-1 my-2 text-xl font-bold rounded-lg w-fit bg-black/40 backdrop-blur-md">
+                {{ col.title }}
+              </div>
+              <div class="justify-between sm:flex sm:gap-x-6">
+                <LinkBlock
+                  v-for="item in col.links"
+                  :item-data="item"
+                  @tips-update="handleTipsUpdate" />
+              </div>
+            </div>
+          </div>
+        </Transition>
       </div>
     </Transition>
-    <div class="hidden md:block" id="cursor-container"></div>
+    <div class="absolute hidden md:block" id="cursor-container"></div>
     <footer
       class="fixed bottom-0 left-0 w-full py-1 overflow-hidden text-center bg-black/40 backdrop-blur"
       v-show="loaded">
@@ -42,12 +69,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue';
-import axios from 'axios';
 import { ColItem } from '@/types';
 import cursorInit from '@/utils/cursor';
-import LinkBlock from '@cp/LinkBlock.vue';
-import UserProfile from '@cp/UserProfile.vue';
+import { getSiteConfig } from './api';
 
 const loaded = computed(() => configLoaded.value && backgroundLoad.value);
 const configLoaded = ref(false);
@@ -56,7 +80,12 @@ const links = ref<ColItem[]>([]);
 const username = ref('');
 const tipsText = ref('');
 const tipsShow = ref(false);
+const playerEnable = ref(false);
 const footerText = ref('');
+const playlistConfig = ref({
+  server: '',
+  id: '',
+});
 
 watch(loaded, () => {
   if (loaded.value) {
@@ -69,12 +98,15 @@ watch(loaded, () => {
 
 onMounted(() => {
   cursorInit(document.getElementById('cursor-container') as HTMLElement);
-  axios
-    .get('./config.json')
+  getSiteConfig()
     .then((res) => res.data)
     .then((data) => {
       document.title = data['username'];
       username.value = data['username'];
+      playlistConfig.value = {
+        server: data['playlist']['server'],
+        id: data['playlist']['id'],
+      };
       const i = new Image();
       i.src = data['background'];
       i.onload = () => {
@@ -183,6 +215,18 @@ img {
 .scale-x-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  height: 0 !important;
+  opacity: 0;
+  /* transform: translateY(30px); */
 }
 
 .main-show-enter-active {
