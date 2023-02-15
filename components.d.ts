@@ -8,10 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     LinkBlock: typeof import('./src/components/LinkBlock.vue')['default']
-    MiniPlayer: typeof import('./src/components/MiniPlayer.vue')['default']
     MusicPlayer: typeof import('./src/components/MusicPlayer.vue')['default']
-    PlayerList: typeof import('./src/components/PlayerList.vue')['default']
-    PlayList: typeof import('./src/components/PlayList.vue')['default']
     UserProfile: typeof import('./src/components/UserProfile.vue')['default']
   }
 }
