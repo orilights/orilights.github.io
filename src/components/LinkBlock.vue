@@ -9,7 +9,8 @@
         itemData.tips ? itemData.tips : '前往 ' + itemData.link
       )
     "
-    @mouseleave="$emit('tipsUpdate', false)">
+    @mouseleave="$emit('tipsUpdate', false)"
+  >
     {{ itemData.title }}
   </a>
 </template>

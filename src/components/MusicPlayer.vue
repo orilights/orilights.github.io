@@ -1,11 +1,11 @@
 <template>
   <div
-    class="block py-2 my-2 overflow-hidden text-lg text-center transition-all rounded-lg sm:flex-1 bg-black/40 backdrop-blur-md"
+    class="box-border block overflow-hidden text-lg text-center transition-all rounded-lg sm:flex-1 bg-black/40 backdrop-blur-md"
     :style="{
       height: listShow ? '316px' : '116px',
-    }">
-    <div class="absolute z-10 text-sm top-2 right-2" @click="$emit('player:close')">×</div>
-    <div id="aplayer"></div>
+    }"
+  >
+    <div class="py-2" id="aplayer"></div>
   </div>
 </template>
 
@@ -20,7 +20,6 @@ const props = defineProps<{
     id: string;
   };
 }>();
-defineEmits(['player:close'])
 
 const playlist = ref<PlaylistItem[]>([]);
 const listShow = ref(false);
@@ -61,7 +60,7 @@ function initAPlayer() {
   });
 }
 
-onBeforeUnmount(()=>{
-  aplayerInstance && aplayerInstance.destroy()
-})
+onBeforeUnmount(() => {
+  aplayerInstance && aplayerInstance.destroy();
+});
 </script>

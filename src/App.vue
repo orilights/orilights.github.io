@@ -2,48 +2,75 @@
   <Transition name="bg-show">
     <div
       class="w-screen h-screen fixed top-0 left-0 z-[-1] bg"
-      v-show="loaded"></div>
+      v-show="loaded"
+    ></div>
   </Transition>
   <div
-    class="z-10 flex flex-col items-center justify-center w-full min-h-screen py-8 text-white bg-black/20">
+    class="z-10 flex flex-col items-center justify-center w-full min-h-screen py-8 text-white bg-black/20"
+  >
     <Transition name="main-show">
       <div class="w-full md:w-[700px] px-6 md:px-0" v-show="loaded">
         <UserProfile class="pb-4" :username="username" />
         <div
-          class="px-4 py-1 mx-auto mb-2 text-white rounded-lg w-fit bg-black/40 backdrop-blur-md"
-          @click="playerEnable = true"
-          v-if="!playerEnable">
+          class="px-4 py-1 mx-auto mb-2 text-white rounded-lg w-fit bg-black/40 backdrop-blur-md hover:bg-black/50 hover:scale-[1.03] transition-all"
+          @click="playerEnable = !playerEnable"
+          @mouseenter="
+            handleTipsUpdate(true, playerEnable ? '关闭播放器' : '来点音乐')
+          "
+          @mouseleave="handleTipsUpdate(false)"
+        >
           <svg
+            v-show="!playerEnable"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6">
+            class="w-6 h-6"
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+              d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
+            />
+          </svg>
+          <svg
+            v-show="playerEnable"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </div>
-        <Transition name="fade">
+        <Transition name="fade" mode="out-in">
           <MusicPlayer
+            class="mb-2"
             :config="playlistConfig"
             v-if="playerEnable"
-            @player:close="playerEnable = false" />
+          />
         </Transition>
         <Transition name="fade">
           <div>
             <div v-for="col in links" class="mb-4">
               <div
-                class="px-4 py-1 my-2 text-xl font-bold rounded-lg w-fit bg-black/40 backdrop-blur-md">
+                class="px-4 py-1 mb-2 text-xl font-bold rounded-lg w-fit bg-black/40 backdrop-blur-md"
+              >
                 {{ col.title }}
               </div>
               <div class="justify-between sm:flex sm:gap-x-6">
                 <LinkBlock
                   v-for="item in col.links"
                   :item-data="item"
-                  @tips-update="handleTipsUpdate" />
+                  @tips-update="handleTipsUpdate"
+                />
               </div>
             </div>
           </div>
@@ -53,11 +80,13 @@
     <div class="absolute hidden md:block" id="cursor-container"></div>
     <footer
       class="fixed bottom-0 left-0 w-full py-1 overflow-hidden text-center bg-black/40 backdrop-blur"
-      v-show="loaded">
+      v-show="loaded"
+    >
       <Transition name="scale-x">
         <div
           class="absolute bottom-0 left-0 w-full py-1 text-center"
-          v-show="tipsShow">
+          v-show="tipsShow"
+        >
           {{ tipsText }}
         </div>
       </Transition>
@@ -130,10 +159,10 @@ onMounted(() => {
     });
 });
 
-function handleTipsUpdate(show: boolean, text: string) {
+function handleTipsUpdate(show: boolean, text?: string) {
   tipsShow.value = show;
   if (show) {
-    tipsText.value = text;
+    tipsText.value = text || '';
   }
 }
 </script>
@@ -219,7 +248,7 @@ img {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 1s ease;
+  transition: all 10s ease;
 }
 
 .fade-enter-from,
