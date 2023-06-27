@@ -16,23 +16,18 @@
             "links": [
                 {
                     "title": "自留地",
-                    "link": "https://blog.amarea.cn/"
+                    "link": "https://blog.amarea.cn/",
+                    "tips": "只是一个博客 :)"
                 },
                 {
                     "title": "仓库",
-                    "link": "https://pan.amarea.cn/"
-                },
-                {
-                    "title": "图床",
-                    "link": "https://img.amarea.cn/"
-                },
-                {
-                    "title": "网站统计",
-                    "link": "https://analytics.amarea.cn/"
+                    "link": "https://pan.amarea.cn/",
+                    "tips": "个人收集的一些奇怪的东西"
                 },
                 {
                     "title": "服务状态",
-                    "link": "https://go.amarea.cn/status"
+                    "link": "https://go.amarea.cn/status",
+                    "tips": "希望服务器没逝🙏"
                 }
             ]
         }
@@ -47,9 +42,9 @@
         {
             "title": "原神官网新闻检索",
             "link": "https://orilights.github.io/GenshinNews",
-            "tips": "一个原神官网新闻检索工具",
+            "tips": "原神官网新闻检索工具🔍",
             "background": "https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
         }
     ],
-    "footer": "© 2020-2023 OriLight"
+    "footer": "©2020-2023 OriLight"
 }
