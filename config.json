@@ -12,6 +12,7 @@
     "links": [
         {
             "title": "站点",
+            "subtitle": "Site",
             "links": [
                 {
                     "title": "自留地",
@@ -19,7 +20,7 @@
                 },
                 {
                     "title": "仓库",
-                    "link": "https://go.amarea.cn/dlsite"
+                    "link": "https://pan.amarea.cn/"
                 },
                 {
                     "title": "图床",
@@ -32,15 +33,17 @@
             ]
         }
     ],
-    "works":[
+    "projects":[
         {
             "title": "PixivCollection",
             "link": "https://pixiv.orilight.top/",
-            "background": "https://icdn.amarea.cn/upload/2023/06/649a5602631b1.jpg"
+            "tips": "我的 Pixiv 收藏夹",
+            "background": "https://icdn.amarea.cn/upload/2023/06/649a8efdb3e57.jpg"
         },
         {
             "title": "原神官网新闻检索",
             "link": "https://orilights.github.io/GenshinNews",
+            "tips": "一个原神官网新闻检索工具",
             "background": "https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
         }
     ],
