@@ -1,0 +1,104 @@
+body {
+  background-color: black;
+  -webkit-font-smoothing: subpixel-antialiased;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#app {
+  overflow: hidden;
+}
+
+/* Background */
+
+.bg {
+  background-image: var(--o-bg, black);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* No drag */
+
+a,
+img {
+  -webkit-user-drag: none;
+}
+
+/* Loading */
+
+.loaded {
+  background: #00000000 !important;
+  backdrop-filter: blur(0px) !important;
+}
+
+.loaded svg {
+  display: none;
+}
+
+/* Cursor */
+
+* {
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='10px' height='10px'><circle cx='4' cy='4' r='4' fill='white' /></svg>") 4 4,
+    auto !important;
+}
+
+#cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 25px;
+  opacity: 0.25;
+  z-index: 10086;
+  pointer-events: none;
+  transition: 0.2s ease-in-out;
+  transition-property: background, opacity, transform;
+}
+
+#cursor.active {
+  opacity: 0.5;
+  transform: scale(0.5);
+}
+
+/* Transition */
+
+.scale-x-enter-active,
+.scale-x-leave-active {
+  transition: all 0.3s ease;
+}
+
+.scale-x-enter-from,
+.scale-x-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  height: 0 !important;
+  opacity: 0;
+  /* transform: translateY(30px); */
+}
+
+.main-show-enter-active {
+  transition: all 1.5s ease;
+}
+
+.main-show-enter-from {
+  transform: scale(1.1);
+}
+
+.bg-show-enter-active {
+  transition: all 1.5s ease;
+}
+
+.bg-show-enter-from {
+  transform: scale(1.3);
+}

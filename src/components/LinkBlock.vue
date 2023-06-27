@@ -1,6 +1,6 @@
 <template>
   <a
-    class="flex-1 text-lg text-center py-2 md:py-3 lg:py-4 overflow-hidden bg-black/40 backdrop-blur-md rounded-lg hover:bg-black/50 hover:scale-[1.03] transition-all min-w-[150px]"
+    class="flex-1 text-lg text-center py-2 md:py-3 lg:py-4 overflow-hidden bg-black/30 rounded-lg hover:bg-black/50 hover:scale-[1.03] transition-all min-w-[100px]"
     :href="itemData.link"
     @mouseenter="
       $emit(

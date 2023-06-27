@@ -1,12 +1,12 @@
-export interface ColItem {
-  title: string
-  links: LinkItem[]
-}
-
-export interface ProfileData {
+export interface Profile {
   username: string
   github?: string
   telegram?: string
+}
+export interface ColItem {
+  title: string
+  subtitle?: string
+  links: LinkItem[]
 }
 
 export interface LinkItem {
@@ -15,9 +15,10 @@ export interface LinkItem {
   tips?: string
 }
 
-export interface WorkItem {
+export interface ProjectItem {
   title: string
   link: string
+  tips?: string
   background: string
 }
 
