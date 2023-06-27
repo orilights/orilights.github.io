@@ -4,7 +4,7 @@
   </Transition>
   <div class="z-10 flex flex-col items-center justify-center w-full min-h-screen text-white bg-black/20">
     <Transition name="main-show">
-      <div v-show="loaded" class="w-full sm:w-[500px] min-h-screen sm:min-h-full pb-8 sm:pb-0 overflow-hidden bg-black/40 backdrop-blur-md sm:rounded-2xl">
+      <div v-show="loaded" class="w-full sm:w-[500px] min-h-screen sm:min-h-full sm:mt-4 sm:mb-12 pb-8 sm:pb-0 overflow-hidden bg-black/40 backdrop-blur-md sm:rounded-2xl">
         <UserProfile
           v-if="profile"
           :profile-data="profile"
