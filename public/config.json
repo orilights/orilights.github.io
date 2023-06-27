@@ -1,12 +1,14 @@
 {
-    "username": "OriLight",
+    "profile": {
+        "username": "OriLight",
+        "github": "https://github.com/orilights",
+        "telegram": "https://t.me/OriLight"
+    },
     "background": "https://api.amarea.cn/getbg/hp",
-    "script": "<script async defer data-website-id=\"c2ca99a1-28d0-4303-b24b-7b3f21db02a8\" src=\"https://analytics.amarea.cn/collect.js\"></script>",
     "playlist": {
         "server": "netease",
         "id": "8168227315"
     },
-    "hitokoto":"https://v1.hitokoto.cn/?encode=json",
     "links": [
         {
             "title": "站点",
@@ -28,25 +30,18 @@
                     "link": "https://go.amarea.cn/status"
                 }
             ]
+        }
+    ],
+    "works":[
+        {
+            "title": "PixivCollection",
+            "link": "https://pixiv.orilight.top/",
+            "background": "https://icdn.amarea.cn/upload/2023/06/649a5602631b1.jpg"
         },
         {
-            "title": "联系",
-            "links": [
-                {
-                    "title": "Telegram",
-                    "link": "https://t.me/OriLight"
-                },
-                {
-                    "title": "Email",
-                    "link": "mailto:i@orght.cn",
-                    "tips": "发送邮件到 i@orght.cn"
-                },
-                {
-                    "title": "留言",
-                    "link": "https://go.amarea.cn/guestbook",
-                    "tips": "前往留言板"
-                }
-            ]
+            "title": "原神官网新闻检索",
+            "link": "https://orilights.github.io/GenshinNews",
+            "background": "https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
         }
     ],
     "footer": "© 2020-2023 OriLight"

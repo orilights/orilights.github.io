@@ -12,8 +12,8 @@
 }
 
 .aplayer-info {
-  margin-left: 0px !important;
   border-bottom: none !important;
+  padding: 0 5px !important;
 }
 
 .aplayer-list {
@@ -39,7 +39,7 @@
 }
 
 .aplayer-lrc {
-  /* height: 80px !important; */
+  height: 50px !important;
 }
 
 .aplayer-lrc::after,
@@ -53,5 +53,5 @@
 }
 
 .aplayer-lrc-contents>p {
-  color: rgba(255, 255, 255, 0.6)!important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }

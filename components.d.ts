@@ -10,5 +10,6 @@ declare module '@vue/runtime-core' {
     LinkBlock: typeof import('./src/components/LinkBlock.vue')['default']
     MusicPlayer: typeof import('./src/components/MusicPlayer.vue')['default']
     UserProfile: typeof import('./src/components/UserProfile.vue')['default']
+    WorkBlock: typeof import('./src/components/WorkBlock.vue')['default']
   }
 }

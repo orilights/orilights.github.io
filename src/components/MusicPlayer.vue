@@ -1,46 +1,46 @@
 <template>
   <div
-    class="box-border block overflow-hidden text-lg text-center transition-all rounded-lg sm:flex-1 bg-black/40 backdrop-blur-md"
+    class="box-border block overflow-hidden text-lg text-center transition-all duration-500 rounded-lg sm:flex-1 bg-black/40 backdrop-blur-md"
     :style="{
       height: listShow ? '316px' : '116px',
     }"
   >
-    <div class="py-2" id="aplayer"></div>
+    <div id="aplayer" class="py-2" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { getPlaylist } from '@/api';
-import { PlaylistItem } from '@/types';
-import APlayer from 'aplayer';
+import APlayer from 'aplayer'
+import { getPlaylist } from '@/api'
+import type { PlaylistItem } from '@/types'
 
 const props = defineProps<{
   config: {
-    server: string;
-    id: string;
-  };
-}>();
+    server: string
+    id: string
+  }
+}>()
 
-const playlist = ref<PlaylistItem[]>([]);
-const listShow = ref(false);
-let aplayerInstance: APlayer | null = null;
+const playlist = ref<PlaylistItem[]>([])
+const listShow = ref(false)
+let aplayerInstance: APlayer | null = null
 
 watchEffect(() => {
-  if (props.config.id === '') return;
+  if (props.config.id === '')
+    return
   getPlaylist(props.config.server, props.config.id)
     .then((res) => {
       playlist.value = (res.data as Array<PlaylistItem>).sort(
         // 打乱播放列表顺序
-        () => Math.random() - 0.5
-      );
-      if (!aplayerInstance) {
-        initAPlayer();
-      }
+        () => Math.random() - 0.5,
+      )
+      if (!aplayerInstance)
+        initAPlayer()
     })
     .catch((err) => {
-      console.error('播放列表加载失败', err);
-    });
-});
+      console.error('播放列表加载失败', err)
+    })
+})
 
 function initAPlayer() {
   aplayerInstance = new APlayer({
@@ -51,16 +51,16 @@ function initAPlayer() {
     loop: 'all',
     volume: 0.3,
     audio: playlist.value,
-  });
+  })
   aplayerInstance.on('listshow', () => {
-    listShow.value = true;
-  });
+    listShow.value = true
+  })
   aplayerInstance.on('listhide', () => {
-    listShow.value = false;
-  });
+    listShow.value = false
+  })
 }
 
 onBeforeUnmount(() => {
-  aplayerInstance && aplayerInstance.destroy();
-});
+  aplayerInstance && aplayerInstance.destroy()
+})
 </script>
