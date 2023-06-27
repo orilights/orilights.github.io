@@ -27,6 +27,10 @@
                     "link": "https://img.amarea.cn/"
                 },
                 {
+                    "title": "网站统计",
+                    "link": "https://analytics.amarea.cn/"
+                },
+                {
                     "title": "服务状态",
                     "link": "https://go.amarea.cn/status"
                 }
