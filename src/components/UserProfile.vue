@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center">
     <div class="flex w-full p-6 pb-5 text-xl bg-black/30">
-      <img class="w-[60px] h-[60px]" src="/favicon.png" alt="avatar">
+      <img class="w-[60px] h-[60px] hover:scale-105 transition-transform" src="/favicon.png" alt="avatar">
       <div class="pl-4">
         <div class="pb-1 font-bold">
           {{ profileData.username }}
@@ -10,7 +10,7 @@
           <a
             v-if="profileData.github"
             :href="profileData.github"
-            class="p-1 transition-transform hover:scale-110"
+            class="p-1 transition-transform hover:scale-110 group"
             target="_blank"
             @mouseenter="
               $emit(
@@ -21,12 +21,12 @@
             "
             @mouseleave="$emit('tipsUpdate', false)"
           >
-            <GithubAlt class="w-6 h-6" />
+            <GithubAlt class="w-6 h-6 group-hover:text-gray-400 transition-colors" />
           </a>
           <a
             v-if="profileData.telegram"
             :href="profileData.telegram"
-            class="p-1 transition-transform hover:scale-110"
+            class="p-1 transition-transform hover:scale-110 group"
             target="_blank"
             @mouseenter="
               $emit(
@@ -37,7 +37,7 @@
             "
             @mouseleave="$emit('tipsUpdate', false)"
           >
-            <TelegramPlane class="w-6 h-6" />
+            <TelegramPlane class="w-6 h-6 group-hover:text-gray-400 transition-colors" />
           </a>
         </div>
       </div>

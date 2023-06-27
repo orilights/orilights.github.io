@@ -1,7 +1,7 @@
 <template>
   <a
-    class="block flex-1 overflow-hidden group relative rounded-lg bg-black min-w-[200px]"
     :href="itemData.link"
+    class="block flex-1 overflow-hidden group relative rounded-lg bg-black min-w-[200px]"
     target="_blank"
     @mouseenter="
       $emit(
