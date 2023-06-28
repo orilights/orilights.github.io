@@ -67,8 +67,8 @@ import type { ColItem, Profile, ProjectItem } from '@/types'
 
 initAnalytics()
 const configLoaded = ref(false)
-const backgroundLoad = ref(false)
-const loaded = computed(() => configLoaded.value && backgroundLoad.value)
+const backgroundLoaded = ref(false)
+const loaded = computed(() => configLoaded.value && backgroundLoaded.value)
 const links = ref<ColItem[]>([])
 const projects = ref<ProjectItem[]>([])
 const profile = ref<Profile>()
@@ -103,11 +103,8 @@ onMounted(() => {
       const i = new Image()
       i.src = data.background
       i.onload = () => {
-        backgroundLoad.value = true
+        backgroundLoaded.value = true
       }
-      setTimeout(() => {
-        backgroundLoad.value = true
-      }, 5000)
       document.body.style.setProperty(
         '--o-bg',
         `url(${data.background})`,
@@ -121,6 +118,9 @@ onMounted(() => {
     })
     .finally(() => {
       configLoaded.value = true
+      setTimeout(() => {
+        backgroundLoaded.value = true
+      }, 5000)
     })
 })
 

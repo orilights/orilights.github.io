@@ -1,7 +1,7 @@
 <template>
   <a
     :href="itemData.link"
-    class="flex-1 text-center py-2 sm:py-3 overflow-hidden bg-black/30 rounded-lg hover:bg-black/50 transition-all min-w-[120px]"
+    class="flex-1 text-center py-2 sm:py-3 overflow-hidden bg-black/30 rounded-lg hover:bg-black/50 transition-all min-w-[120px] hover:scale-[1.02] hover:shadow-md"
     target="_blank"
     @mouseenter="
       $emit(
