@@ -41,7 +41,7 @@
         },
         {
             "title": "原神官网新闻检索",
-            "link": "https://orilights.github.io/GenshinNews",
+            "link": "https://genshin-news-search.vercel.app/",
             "tips": "原神官网新闻检索工具🔍",
             "background": "https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
         }
