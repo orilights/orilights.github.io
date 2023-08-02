@@ -107,24 +107,18 @@ watch(backgroundLoaded, () => {
 })
 
 onMounted(() => {
-  try {
-    const i = new Image()
-    i.onload = () => {
-      backgroundLoaded.value = true
-    }
-    i.src = backgroundImage
-    document.body.style.setProperty(
-      '--o-bg',
+  setTimeout(() => {
+    backgroundLoaded.value = true
+  }, 5000)
+  const imgEl = new Image()
+  imgEl.onload = () => {
+    backgroundLoaded.value = true
+    imgEl.remove()
+  }
+  imgEl.src = backgroundImage
+  document.body.style.setProperty(
+    '--o-bg',
       `url(${backgroundImage})`,
-    )
-  }
-  catch (e) {
-    console.error(e)
-  }
-  finally {
-    setTimeout(() => {
-      backgroundLoaded.value = true
-    }, 1000)
-  }
+  )
 })
 </script>
