@@ -9,6 +9,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     LinkBlock: typeof import('./src/components/LinkBlock.vue')['default']
     ProjectBlock: typeof import('./src/components/ProjectBlock.vue')['default']
+    TextBlock: typeof import('./src/components/TextBlock.vue')['default']
+    Title: typeof import('./src/components/Title.vue')['default']
     UserProfile: typeof import('./src/components/UserProfile.vue')['default']
+    WithStatus: typeof import('./src/components/WithStatus.vue')['default']
   }
 }

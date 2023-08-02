@@ -1,26 +1,17 @@
 <template>
   <a
-    :href="itemData.link"
-    class="flex-1 text-center py-2 sm:py-3 overflow-hidden bg-black/30 rounded-lg hover:bg-black/50 transition-all min-w-[120px] hover:scale-[1.02] hover:shadow-md"
+    :href="link"
+    class="inline-block px-6 py-3 break-keep bg-black/30 rounded-lg hover:bg-black/50 transition-all hover:scale-[1.02]"
     target="_blank"
-    @mouseenter="
-      $emit(
-        'tipsUpdate',
-        true,
-        itemData.tips ? itemData.tips : `前往 ${itemData.link}`,
-      )
-    "
-    @mouseleave="$emit('tipsUpdate', false)"
   >
-    {{ itemData.title }}
+    {{ title }}
   </a>
 </template>
 
 <script setup lang="ts">
-import type { LinkItem } from '@/types'
-
 defineProps<{
-  itemData: LinkItem
+  title: string
+  link: string
 }>()
 
 defineEmits(['tipsUpdate'])
