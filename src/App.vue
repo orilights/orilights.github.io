@@ -69,19 +69,19 @@
             <div class="flex flex-wrap gap-3">
               <WithStatus status="等枫丹">
                 <TextBlock>
-                  <img src="icon/genshin.png" class="inline-block w-5 rounded">
+                  <img src="/icon/genshin.png" class="inline-block w-5 rounded">
                   原神
                 </TextBlock>
               </WithStatus>
               <WithStatus status="当番看">
                 <TextBlock>
-                  <img src="icon/starrail.png" class="inline-block w-5 rounded">
+                  <img src="/icon/starrail.png" class="inline-block w-5 rounded">
                   崩坏：星穹铁道
                 </TextBlock>
               </WithStatus>
               <WithStatus status="感觉不如MAA">
                 <TextBlock>
-                  <img src="icon/arknights.png" class="inline-block w-5 rounded">
+                  <img src="/icon/arknights.png" class="inline-block w-5 rounded">
                   明日方舟
                 </TextBlock>
               </WithStatus>
