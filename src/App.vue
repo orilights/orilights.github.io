@@ -85,6 +85,12 @@
                   明日方舟
                 </TextBlock>
               </WithStatus>
+              <WithStatus status="等Mika">
+                <TextBlock>
+                  <img src="/icon/bluearchive.png" class="inline-block w-5 rounded">
+                  蔚蓝档案
+                </TextBlock>
+              </WithStatus>
             </div>
           </div>
         </div>
