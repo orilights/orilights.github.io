@@ -51,29 +51,35 @@
             <Title title="项目" subtitle="Project" />
             <div class="flex flex-wrap gap-4">
               <ProjectBlock
+                title="ServerStatus Theme Light"
+                link="https://github.com/orilights/ServerStatus-Theme-Light"
+                description="一个极简的 ServerStatus 主题"
+                background="https://icdn.amarea.cn/upload/2023/09/64f53791b3333.jpg"
+              />
+              <ProjectBlock
+                title="原神官网新闻检索"
+                link="https://genshin-news.app.orilight.top/"
+                description="一个用于检索原神 CN 服务器官网新闻的小工具"
+                background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
+              />
+              <ProjectBlock
                 title="PixivCollection"
                 link="https://pixiv.orilight.top/"
                 description="我的 Pixiv 收藏夹"
                 background="https://icdn.amarea.cn/upload/2023/06/649a8efdb3e57.jpg"
-              />
-              <ProjectBlock
-                title="原神官网新闻检索"
-                link="https://genshin-news-search.vercel.app/"
-                description="一个用于检索原神 CN 服务器官网新闻的小工具"
-                background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
             </div>
           </div>
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
-              <WithStatus status="等枫丹">
+              <WithStatus status="等芙芙">
                 <TextBlock>
                   <img src="/icon/genshin.png" class="inline-block w-5 rounded">
                   原神
                 </TextBlock>
               </WithStatus>
-              <WithStatus status="当番看">
+              <WithStatus status="摆大烂">
                 <TextBlock>
                   <img src="/icon/starrail.png" class="inline-block w-5 rounded">
                   崩坏：星穹铁道
