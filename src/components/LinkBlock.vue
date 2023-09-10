@@ -1,7 +1,7 @@
 <template>
   <a
     :href="link"
-    class="inline-block px-6 py-3 break-keep bg-black/30 rounded-lg hover:bg-black/50 transition-all hover:scale-[1.02]"
+    class="inline-block px-6 py-3 break-keep bg-black/30 rounded-lg hover:bg-black/50 transition-all hover:scale-[1.05]"
     target="_blank"
   >
     {{ title }}

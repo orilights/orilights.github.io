@@ -13,36 +13,34 @@
       <div class="p-4 sm:px-10 sm:py-16 flex-1 flex items-center">
         <div class="flex flex-col gap-4">
           <div>
-            <Title title="关于" subtitle="About" />
-            <TextBlock>
-              不知名双非软工在读，前端学习中
-            </TextBlock>
-          </div>
-          <div>
             <Title title="站点" subtitle="Site" />
             <div class="flex flex-wrap gap-3">
-              <WithStatus status="博客">
+              <WithStatus text="博客">
                 <LinkBlock
                   title="自留地"
                   link="https://blog.amarea.cn/"
                 />
               </WithStatus>
-              <WithStatus status="暂时挂了">
+              <WithStatus text="寄了">
                 <LinkBlock
                   title="文件仓库"
                   link="https://pan.amarea.cn/"
                 />
               </WithStatus>
-              <WithStatus status="玩具API">
+              <WithStatus text="玩具">
                 <LinkBlock
                   title="API 服务"
                   link="https://api.amarea.cn/"
                 />
               </WithStatus>
-              <WithStatus status="希望服务器没逝🙏">
+              <LinkBlock
+                title="服务状态监控"
+                link="https://go.amarea.cn/status"
+              />
+              <WithStatus text="希望服务器没逝🙏">
                 <LinkBlock
-                  title="服务状态监控"
-                  link="https://go.amarea.cn/status"
+                  title="服务器监控"
+                  link="https://go.amarea.cn/serverstatus"
                 />
               </WithStatus>
             </div>
@@ -73,26 +71,26 @@
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
-              <WithStatus status="等芙芙">
+              <WithStatus text="等芙芙">
                 <TextBlock>
                   <img src="/icon/genshin.png" class="inline-block w-5 rounded">
                   原神
                 </TextBlock>
               </WithStatus>
-              <WithStatus status="摆大烂">
-                <TextBlock>
+              <WithStatus text="摆大烂">
+                <TextBlock class="flex items-center gap-2">
                   <img src="/icon/starrail.png" class="inline-block w-5 rounded">
                   崩坏：星穹铁道
                 </TextBlock>
               </WithStatus>
-              <WithStatus status="感觉不如MAA">
-                <TextBlock>
+              <WithStatus text="全靠MAA">
+                <TextBlock class="flex items-center gap-2">
                   <img src="/icon/arknights.png" class="inline-block w-5 rounded">
                   明日方舟
                 </TextBlock>
               </WithStatus>
-              <WithStatus status="等Mika">
-                <TextBlock>
+              <WithStatus text="等Mika">
+                <TextBlock class="flex items-center gap-2">
                   <img src="/icon/bluearchive.png" class="inline-block w-5 rounded">
                   蔚蓝档案
                 </TextBlock>
