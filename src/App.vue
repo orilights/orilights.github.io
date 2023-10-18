@@ -21,12 +21,12 @@
                   link="https://blog.amarea.cn/"
                 />
               </WithStatus>
-              <WithStatus text="寄了">
+              <!-- <WithStatus text="寄了">
                 <LinkBlock
                   title="文件仓库"
                   link="https://pan.amarea.cn/"
                 />
-              </WithStatus>
+              </WithStatus> -->
               <WithStatus text="玩具">
                 <LinkBlock
                   title="API 服务"
@@ -34,10 +34,10 @@
                 />
               </WithStatus>
               <LinkBlock
-                title="服务状态监控"
+                title="网站监控"
                 link="https://go.amarea.cn/status"
               />
-              <WithStatus text="希望服务器没逝🙏">
+              <WithStatus text="希望没逝🙏">
                 <LinkBlock
                   title="服务器监控"
                   link="https://go.amarea.cn/serverstatus"
@@ -57,7 +57,7 @@
               <ProjectBlock
                 title="原神官网新闻检索"
                 link="https://genshin-news.app.orilight.top/"
-                description="一个用于检索原神 CN 服务器官网新闻的小工具"
+                description="一个用于检索原神国服官网新闻的小工具"
                 background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
               <ProjectBlock
@@ -77,7 +77,7 @@
                   原神
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="摆大烂">
+              <WithStatus text="摆烂">
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/starrail.png" class="inline-block w-5 rounded">
                   崩坏：星穹铁道
