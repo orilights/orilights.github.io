@@ -37,12 +37,10 @@
                 title="网站监控"
                 link="https://go.amarea.cn/status"
               />
-              <WithStatus text="希望没逝🙏">
-                <LinkBlock
-                  title="服务器监控"
-                  link="https://go.amarea.cn/serverstatus"
-                />
-              </WithStatus>
+              <LinkBlock
+                title="探针"
+                link="https://go.amarea.cn/serverstatus"
+              />
             </div>
           </div>
           <div>
@@ -71,16 +69,16 @@
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
-              <WithStatus text="等芙芙">
+              <WithStatus text="等新图">
                 <TextBlock>
                   <img src="/icon/genshin.png" class="inline-block w-5 rounded">
                   原神
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="摆烂">
+              <WithStatus text="等2.0">
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/starrail.png" class="inline-block w-5 rounded">
-                  崩坏：星穹铁道
+                  星穹铁道
                 </TextBlock>
               </WithStatus>
               <WithStatus text="全靠MAA">
@@ -89,8 +87,8 @@
                   明日方舟
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="等Mika">
-                <TextBlock class="flex items-center gap-2">
+              <WithStatus text="已退坑">
+                <TextBlock class="flex items-center gap-2" :disabled="true">
                   <img src="/icon/bluearchive.png" class="inline-block w-5 rounded">
                   蔚蓝档案
                 </TextBlock>
