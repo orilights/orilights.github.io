@@ -49,13 +49,13 @@
               <ProjectBlock
                 title="ServerStatus Theme Light"
                 link="https://github.com/orilights/ServerStatus-Theme-Light"
-                description="一个极简的 ServerStatus 主题"
+                description="ServerStatus Light 主题"
                 background="https://icdn.amarea.cn/upload/2023/09/64f53791b3333.jpg"
               />
               <ProjectBlock
                 title="原神官网新闻检索"
-                link="https://genshin-news.app.orilight.top/"
-                description="一个用于检索原神国服官网新闻的小工具"
+                link="https://genshin-news.orilight.top/"
+                description="一个用于检索原神 CN 服务器官网新闻的小工具"
                 background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
               <ProjectBlock
