@@ -47,47 +47,59 @@
               <ProjectBlock
                 title="ServerStatus Theme Light"
                 link="https://github.com/orilights/ServerStatus-Theme-Light"
-                description="ServerStatus Light 主题"
+                description="自制 ServerStatus 主题"
                 background="https://icdn.amarea.cn/upload/2023/09/64f53791b3333.jpg"
-              />
-              <ProjectBlock
-                title="原神官网新闻检索"
-                link="https://genshin-news.orilight.top/"
-                description="一个用于检索原神 CN 服务器官网新闻的小工具"
-                background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
               <ProjectBlock
                 title="PixivCollection"
                 link="https://pixiv.orilight.top/"
-                description="我的 Pixiv 收藏夹"
+                description="在线 Pixiv 收藏夹"
                 background="https://icdn.amarea.cn/upload/2023/06/649a8efdb3e57.jpg"
+              />
+              <ProjectBlock
+                title="原神官网新闻检索"
+                link="https://genshin-news.orilight.top/"
+                description="原神国服官网新闻检索工具，现已支持崩坏：星穹铁道与崩坏3新闻检索"
+                background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
+              />
+              <ProjectBlock
+                title="汇率看板"
+                link="https://exchange-board-dev.vercel.app/"
+                description="自用汇率看板"
+                background="https://icdn.amarea.cn/upload/2024/06/665a0f36b2f7d.png"
+              />
+              <ProjectBlock
+                title="API Viewer"
+                link="https://api-viewer.hk4e.com/"
+                description="API记录查看工具，从2024/5/29开始记录"
+                background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
             </div>
           </div>
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
-              <WithStatus text="等新图">
+              <WithStatus text="等纳塔">
                 <TextBlock>
-                  <img src="/icon/genshin.png" class="inline-block w-5 rounded">
+                  <img src="/icon/game/genshin.png" class="inline-block w-5 rounded">
                   原神
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="等2.0">
+              <WithStatus text="等流萤">
                 <TextBlock class="flex items-center gap-2">
-                  <img src="/icon/starrail.png" class="inline-block w-5 rounded">
+                  <img src="/icon/game/starrail.png" class="inline-block w-5 rounded">
                   星穹铁道
                 </TextBlock>
               </WithStatus>
               <WithStatus text="全靠MAA">
                 <TextBlock class="flex items-center gap-2">
-                  <img src="/icon/arknights.png" class="inline-block w-5 rounded">
+                  <img src="/icon/game/arknights.png" class="inline-block w-5 rounded">
                   明日方舟
                 </TextBlock>
               </WithStatus>
               <WithStatus text="已退坑">
                 <TextBlock class="flex items-center gap-2" :disabled="true">
-                  <img src="/icon/bluearchive.png" class="inline-block w-5 rounded">
+                  <img src="/icon/game/bluearchive.png" class="inline-block w-5 rounded">
                   蔚蓝档案
                 </TextBlock>
               </WithStatus>
