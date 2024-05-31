@@ -1,8 +1,8 @@
 <template>
   <div
-    class="px-3 py-2 bg-black/40 w-fit rounded-lg"
+    class="w-fit rounded-lg bg-black/40 px-3 py-2"
     :class="{
-      ' grayscale text-gray-400': disabled,
+      ' text-gray-400 grayscale': disabled,
     }"
   >
     <slot />

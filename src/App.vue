@@ -1,16 +1,16 @@
 <template>
   <Transition name="bg-show">
-    <div v-show="backgroundLoaded" class="w-screen h-screen fixed top-0 left-0 z-[-1] bg" />
+    <div v-show="backgroundLoaded" class="bg fixed left-0 top-0 z-[-1] h-screen w-screen" />
   </Transition>
-  <div class="z-10 flex flex-col items-center justify-center w-full min-h-screen text-white">
-    <div v-show="backgroundLoaded" class="w-full min-h-screen md:flex transition-all duration-300 bg-black/40 overflow-hidden">
+  <div class="z-10 flex min-h-screen w-full flex-col items-center justify-center text-white">
+    <div v-show="backgroundLoaded" class="min-h-screen w-full overflow-hidden bg-black/40 transition-all duration-300 md:flex">
       <UserProfile
         avatar="/favicon.png"
         username="OriLight"
         github="https://github.com/orilights"
         telegram="https://t.me/OriLight"
       />
-      <div class="p-4 sm:px-10 sm:py-16 flex-1 flex items-center">
+      <div class="flex flex-1 items-center p-4 sm:px-10 sm:py-16">
         <div class="flex flex-col gap-4">
           <div>
             <Title title="站点" subtitle="Site" />
@@ -27,12 +27,10 @@
                   link="https://pan.amarea.cn/"
                 />
               </WithStatus> -->
-              <WithStatus text="玩具">
-                <LinkBlock
-                  title="API 服务"
-                  link="https://api.amarea.cn/"
-                />
-              </WithStatus>
+              <LinkBlock
+                title="API"
+                link="https://api.amarea.cn/"
+              />
               <LinkBlock
                 title="网站监控"
                 link="https://go.amarea.cn/status"
