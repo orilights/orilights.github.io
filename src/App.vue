@@ -9,6 +9,7 @@
         username="OriLight"
         github="https://github.com/orilights"
         telegram="https://t.me/OriLight"
+        email="mailto:i@hk4e.com"
       />
       <div class="flex flex-1 items-center p-4 sm:px-10 sm:py-16">
         <div class="flex flex-col gap-4">
@@ -57,9 +58,9 @@
                 background="https://icdn.amarea.cn/upload/2023/06/649a8efdb3e57.jpg"
               />
               <ProjectBlock
-                title="原神官网新闻检索"
-                link="https://genshin-news.orilight.top/"
-                description="原神国服官网新闻检索工具，现已支持崩坏：星穹铁道与崩坏3新闻检索"
+                title="米哈游官网新闻检索"
+                link="https://news.hk4e.com/"
+                description="米哈游旗下游戏的官网新闻检索工具"
                 background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
               <ProjectBlock
