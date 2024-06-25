@@ -70,9 +70,9 @@
                 background="https://icdn.amarea.cn/upload/2024/06/665a0f36b2f7d.png"
               />
               <ProjectBlock
-                title="API Viewer"
-                link="https://api-viewer.hk4e.com/"
-                description="API记录查看工具，从2024/5/29开始记录"
+                title="API Tracker"
+                link="https://api-tracker.hk4e.com/"
+                description="API变化追踪工具，从2024/5/29开始记录部分米哈游API"
                 background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
             </div>
