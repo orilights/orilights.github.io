@@ -22,12 +22,10 @@
                   link="https://blog.amarea.cn/"
                 />
               </WithStatus>
-              <!-- <WithStatus text="寄了">
-                <LinkBlock
-                  title="文件仓库"
-                  link="https://pan.amarea.cn/"
-                />
-              </WithStatus> -->
+              <LinkBlock
+                title="个人项目"
+                link="https://hk4e.com/"
+              />
               <LinkBlock
                 title="API"
                 link="https://api.amarea.cn/"
@@ -42,7 +40,7 @@
               />
             </div>
           </div>
-          <div>
+          <!-- <div>
             <Title title="项目" subtitle="Project" />
             <div class="flex flex-wrap gap-4">
               <ProjectBlock
@@ -76,7 +74,7 @@
                 background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
               />
             </div>
-          </div>
+          </div> -->
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
@@ -86,7 +84,7 @@
                   原神
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="等流萤">
+              <WithStatus text="摆烂">
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/game/starrail.png" class="inline-block w-5 rounded">
                   星穹铁道
