@@ -1,3 +1,12 @@
+<script setup lang="ts">
+defineProps<{
+  title: string
+  link: string
+}>()
+
+defineEmits(['tipsUpdate'])
+</script>
+
 <template>
   <a
     :href="link"
@@ -7,12 +16,3 @@
     {{ title }}
   </a>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  title: string
-  link: string
-}>()
-
-defineEmits(['tipsUpdate'])
-</script>

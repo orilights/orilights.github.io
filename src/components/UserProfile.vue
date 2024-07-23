@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { GithubAlt, TelegramPlane } from '@vicons/fa'
+
+defineProps<{
+  avatar: string
+  username: string
+  github?: string
+  telegram?: string
+  email?: string
+}>()
+</script>
+
 <template>
   <div class="w-full md:w-[300px] xl:w-[400px]">
     <div class="flex w-full shrink-0 items-center justify-center bg-black/30 p-8 backdrop-blur-sm md:fixed md:h-screen md:w-[300px] xl:w-[400px]">
@@ -44,15 +56,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { At, GithubAlt, TelegramPlane } from '@vicons/fa'
-
-defineProps<{
-  avatar: string
-  username: string
-  github?: string
-  telegram?: string
-  email?: string
-}>()
-</script>

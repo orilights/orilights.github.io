@@ -8,18 +8,11 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      imports: [
-        'vue',
-        {
-          axios: [
-            ['default', 'axios'],
-          ],
-        },
-      ],
-      dts: true,
+      imports: ['vue'],
+      dts: 'src/auto-imports.d.ts',
     }),
     Components({
-      dts: true,
+      dts: 'src/components.d.ts',
     }),
   ],
   resolve: {

@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  text: string
+}>()
+</script>
+
 <template>
   <div class="relative">
     <slot />
@@ -6,9 +12,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  text: string
-}>()
-</script>

@@ -1,3 +1,33 @@
+<script setup lang="ts">
+const backgroundLoaded = ref(false)
+const backgroundImage = 'https://api.amarea.cn/getbg/hp'
+
+watch(backgroundLoaded, () => {
+  if (backgroundLoaded.value) {
+    document.querySelector('#loading')?.classList.add('loaded')
+    setTimeout(() => {
+      document.querySelector('#loading')?.remove()
+    }, 1000)
+  }
+})
+
+onMounted(() => {
+  setTimeout(() => {
+    backgroundLoaded.value = true
+  }, 5000)
+  const imgEl = new Image()
+  imgEl.onload = () => {
+    backgroundLoaded.value = true
+    imgEl.remove()
+  }
+  imgEl.src = backgroundImage
+  document.body.style.setProperty(
+    '--o-bg',
+      `url(${backgroundImage})`,
+  )
+})
+</script>
+
 <template>
   <Transition name="bg-show">
     <div v-show="backgroundLoaded" class="bg fixed left-0 top-0 z-[-1] h-screen w-screen" />
@@ -40,41 +70,6 @@
               />
             </div>
           </div>
-          <!-- <div>
-            <Title title="项目" subtitle="Project" />
-            <div class="flex flex-wrap gap-4">
-              <ProjectBlock
-                title="ServerStatus Theme Light"
-                link="https://github.com/orilights/ServerStatus-Theme-Light"
-                description="自制 ServerStatus 主题"
-                background="https://icdn.amarea.cn/upload/2023/09/64f53791b3333.jpg"
-              />
-              <ProjectBlock
-                title="PixivCollection"
-                link="https://pixiv.orilight.top/"
-                description="在线 Pixiv 收藏夹"
-                background="https://icdn.amarea.cn/upload/2023/06/649a8efdb3e57.jpg"
-              />
-              <ProjectBlock
-                title="米哈游官网新闻检索"
-                link="https://news.hk4e.com/"
-                description="米哈游旗下游戏的官网新闻检索工具"
-                background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
-              />
-              <ProjectBlock
-                title="汇率看板"
-                link="https://exchange-board-dev.vercel.app/"
-                description="自用汇率看板"
-                background="https://icdn.amarea.cn/upload/2024/06/665a0f36b2f7d.png"
-              />
-              <ProjectBlock
-                title="API Tracker"
-                link="https://api-tracker.hk4e.com/"
-                description="API变化追踪工具，从2024/5/29开始记录部分米哈游API"
-                background="https://icdn.amarea.cn/upload/2023/06/649a560262b99.jpg"
-              />
-            </div>
-          </div> -->
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
@@ -88,6 +83,12 @@
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/game/starrail.png" class="inline-block w-5 rounded">
                   星穹铁道
+                </TextBlock>
+              </WithStatus>
+              <WithStatus text="随便玩玩">
+                <TextBlock class="flex items-center gap-2">
+                  <img src="/icon/game/zzz.png" class="inline-block w-5 rounded">
+                  绝区零
                 </TextBlock>
               </WithStatus>
               <WithStatus text="全靠MAA">
@@ -109,33 +110,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const backgroundLoaded = ref(false)
-const backgroundImage = 'https://api.amarea.cn/getbg/hp'
-
-watch(backgroundLoaded, () => {
-  if (backgroundLoaded.value) {
-    document.querySelector('#loading')?.classList.add('loaded')
-    setTimeout(() => {
-      document.querySelector('#loading')?.remove()
-    }, 1000)
-  }
-})
-
-onMounted(() => {
-  setTimeout(() => {
-    backgroundLoaded.value = true
-  }, 5000)
-  const imgEl = new Image()
-  imgEl.onload = () => {
-    backgroundLoaded.value = true
-    imgEl.remove()
-  }
-  imgEl.src = backgroundImage
-  document.body.style.setProperty(
-    '--o-bg',
-      `url(${backgroundImage})`,
-  )
-})
-</script>
