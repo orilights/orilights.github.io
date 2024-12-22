@@ -23,7 +23,7 @@ onMounted(() => {
   imgEl.src = backgroundImage
   document.body.style.setProperty(
     '--o-bg',
-      `url(${backgroundImage})`,
+    `url(${backgroundImage})`,
   )
 })
 </script>
@@ -62,7 +62,7 @@ onMounted(() => {
               />
               <LinkBlock
                 title="网站监控"
-                link="https://go.amarea.cn/status"
+                link="https://go.amarea.cn/uptime"
               />
               <LinkBlock
                 title="探针"
@@ -73,7 +73,7 @@ onMounted(() => {
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
-              <WithStatus text="等纳塔">
+              <WithStatus text="摆烂">
                 <TextBlock>
                   <img src="/icon/game/genshin.png" class="inline-block w-5 rounded">
                   原神
@@ -85,7 +85,7 @@ onMounted(() => {
                   星穹铁道
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="随便玩玩">
+              <WithStatus text="好玩😋">
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/game/zzz.png" class="inline-block w-5 rounded">
                   绝区零
