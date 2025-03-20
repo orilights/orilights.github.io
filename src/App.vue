@@ -1,6 +1,17 @@
 <script setup lang="ts">
+interface Dict {
+  [key: string]: string
+}
+
 const backgroundLoaded = ref(false)
 const backgroundImage = 'https://api.amarea.cn/getbg/hp'
+const statusDict = ref<Dict>({
+  'homepage.status.genshin': '摆烂',
+  'homepage.status.starrail': '摆烂',
+  'homepage.status.zzz': '摆烂',
+  'homepage.status.arknights': '全靠MAA',
+  'homepage.status.bluearchive': '退坑',
+})
 
 watch(backgroundLoaded, () => {
   if (backgroundLoaded.value) {
@@ -25,7 +36,26 @@ onMounted(() => {
     '--o-bg',
     `url(${backgroundImage})`,
   )
+  fetchRemoteConfig()
 })
+
+function fetchRemoteConfig() {
+  const keys = Object.keys(statusDict.value).join(',')
+  fetch(`https://api.amarea.cn/config/${keys}`)
+    .then(res => res.json())
+    .then((data: Dict) => {
+      for (const key in data) {
+        const value = data[key]
+        if (value === null)
+          return
+        statusDict.value[key] = value
+      }
+    })
+}
+
+function t(key: string) {
+  return statusDict.value[key]
+}
 </script>
 
 <template>
@@ -73,31 +103,31 @@ onMounted(() => {
           <div>
             <Title title="在玩的游戏" subtitle="Playing" />
             <div class="flex flex-wrap gap-3">
-              <WithStatus text="摆烂">
+              <WithStatus :text="t('homepage.status.genshin')">
                 <TextBlock>
                   <img src="/icon/game/genshin.png" class="inline-block w-5 rounded">
                   原神
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="摆烂">
+              <WithStatus :text="t('homepage.status.starrail')">
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/game/starrail.png" class="inline-block w-5 rounded">
                   星穹铁道
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="好玩😋">
+              <WithStatus :text="t('homepage.status.zzz')">
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/game/zzz.png" class="inline-block w-5 rounded">
                   绝区零
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="全靠MAA">
+              <WithStatus :text="t('homepage.status.arknights')">
                 <TextBlock class="flex items-center gap-2">
                   <img src="/icon/game/arknights.png" class="inline-block w-5 rounded">
                   明日方舟
                 </TextBlock>
               </WithStatus>
-              <WithStatus text="已退坑">
+              <WithStatus :text="t('homepage.status.bluearchive')">
                 <TextBlock class="flex items-center gap-2" :disabled="true">
                   <img src="/icon/game/bluearchive.png" class="inline-block w-5 rounded">
                   蔚蓝档案
