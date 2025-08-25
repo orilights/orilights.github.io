@@ -3,14 +3,27 @@ interface Dict {
   [key: string]: string
 }
 
+interface ConfigDict {
+  [key: string]: string | number
+}
+
+interface RecentActivity {
+  date: string
+  content: string
+}
+
 const backgroundLoaded = ref(false)
 const backgroundImage = 'https://api.amarea.cn/getbg/hp'
 const statusDict = ref<Dict>({
-  'homepage.status.genshin': '摆烂',
-  'homepage.status.starrail': '摆烂',
-  'homepage.status.zzz': '摆烂',
-  'homepage.status.arknights': '全靠MAA',
+  'homepage.status.genshin': '',
+  'homepage.status.starrail': '',
+  'homepage.status.zzz': '',
+  'homepage.status.arknights': '退坑',
   'homepage.status.bluearchive': '退坑',
+})
+const recentData = ref<RecentActivity[]>([])
+const recentConfig = ref<ConfigDict>({
+  max: 5,
 })
 
 watch(backgroundLoaded, () => {
@@ -47,9 +60,35 @@ function fetchRemoteConfig() {
       for (const key in data) {
         const value = data[key]
         if (value === null)
-          return
+          continue
         statusDict.value[key] = value
       }
+    })
+  fetch(`https://api.amarea.cn/config/homepage.recent`)
+    .then(res => res.json())
+    .then((data: any) => {
+      const content: string = data['homepage.recent'] || ''
+      content.split('\n').forEach((line) => {
+        if (line.trim()) {
+          if (line.startsWith('#')) {
+            const [configKey, configType, configValue] = line.replace('#', '').split(':')
+            if (configType === 'number') {
+              recentConfig.value[configKey] = Number(configValue)
+            }
+            else {
+              recentConfig.value[configKey] = configValue
+            }
+            return
+          }
+          if (/\[\d+\.\d+\.\d+\]/.test(line)) {
+            const date = line.match(/\[(.*)\]/)?.[1] || ''
+            recentData.value.push({ date, content: '' })
+          }
+          else {
+            recentData.value[recentData.value.length - 1].content += `${line.trim()}\n`
+          }
+        }
+      })
     })
 }
 
@@ -122,7 +161,7 @@ function t(key: string) {
                 </TextBlock>
               </WithStatus>
               <WithStatus :text="t('homepage.status.arknights')">
-                <TextBlock class="flex items-center gap-2">
+                <TextBlock class="flex items-center gap-2" :disabled="true">
                   <img src="/icon/game/arknights.png" class="inline-block w-5 rounded">
                   明日方舟
                 </TextBlock>
@@ -133,6 +172,15 @@ function t(key: string) {
                   蔚蓝档案
                 </TextBlock>
               </WithStatus>
+            </div>
+          </div>
+          <div>
+            <Title title="近期动态" subtitle="Recent" />
+            <div class="flex flex-wrap gap-3">
+              <TextBlock v-for="item in recentData.slice(0, Number(recentConfig.max))" :key="item.date" class="flex flex-col">
+                <span class="text-xs text-gray-400">{{ item.date }}</span>
+                <p class="whitespace-pre-line" v-html="item.content" />
+              </TextBlock>
             </div>
           </div>
         </div>
